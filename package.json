@@ -1,0 +1,31 @@
+{
+  "name": "rollup-plugin-json-minify",
+  "version": "1.0.0",
+  "description": "Minify json file rollup plugin",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ouweiya/rollup-plugin-json-minify"
+  },
+  "bugs": "https://github.com/ouweiya/rollup-plugin-json-minify/issues",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rollup",
+    "plugin",
+    "tailwindcss"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^8.1.0"
+  }
+}
