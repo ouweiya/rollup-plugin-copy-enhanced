@@ -37,7 +37,3 @@ default: `Root directory`
 Type: `string[]`
 
 find files using [glob](https://github.com/isaacs/node-glob)
-
-## test
-
- [glob](https://github.com/isaacs/node-glob)
