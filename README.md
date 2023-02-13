@@ -40,4 +40,4 @@ find files using [glob](https://github.com/isaacs/node-glob)
 
 ## test
 
-<a href="https://www.example.com" target="_blank">Example Website</a>
+ [glob](https://github.com/isaacs/node-glob)
