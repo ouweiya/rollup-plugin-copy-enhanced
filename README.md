@@ -1,6 +1,6 @@
 ## Install
 
-```cli
+```console
 npm i rollup-plugin-json-minify -D
 ```
 
