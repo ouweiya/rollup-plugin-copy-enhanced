@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-json-minify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Minify json file rollup plugin",
   "type": "module",
   "main": "index.js",
@@ -21,7 +21,8 @@
   "keywords": [
     "rollup",
     "plugin",
-    "tailwindcss"
+    "json",
+    "minify"
   ],
   "author": "",
   "license": "MIT",
