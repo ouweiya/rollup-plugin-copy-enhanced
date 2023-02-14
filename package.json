@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-json-minify",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Minify json file rollup plugin",
   "type": "module",
   "main": "index.js",

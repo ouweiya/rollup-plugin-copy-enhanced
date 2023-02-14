@@ -6,7 +6,7 @@ npm i rollup-plugin-json-minify -D
 
 ## Usage
 
-**rollup.config.js**
+**`rollup.config.js`**
 
 ```js
 import jsonMinify from 'rollup-plugin-json-minify';
