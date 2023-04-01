@@ -13,7 +13,7 @@ import jsonMinify from 'rollup-plugin-json-minify';
 
 export default {
   ...
-  plugins: [jsonMinify({ patterns: ['assets/**/*.json', 'a.json'], rootDir: 'src' })],
+  plugins: [jsonMinify({rootDir: 'src', patterns: ['assets/**/*.json', 'a.json'] })],
 };
 ```
 

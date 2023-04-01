@@ -1,22 +1,23 @@
 {
   "name": "rollup-plugin-json-minify",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Minify json file rollup plugin",
   "type": "module",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./index.js"
-    }
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "default": "./dist/index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ouweiya/rollup-plugin-json-minify"
   },
-  "bugs": "https://github.com/ouweiya/rollup-plugin-json-minify/issues",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "rimraf dist && tsc --watch",
+    "tsc": "rimraf dist && tsc"
   },
   "keywords": [
     "rollup",
@@ -25,11 +26,26 @@
     "minify"
   ],
   "files": [
-    "!.github"
+    "!.github",
+    "!deprecated",
+    "dist",
+    "tsconfig.json",
+    "src"
   ],
   "author": "",
   "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@rollup/pluginutils": "^5.0.2",
+    "@tsconfig/node18-strictest-esm": "^1.0.1",
+    "@types/node": "^18.15.11",
+    "rimraf": "^4.4.1",
+    "rollup": "^3.20.2",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.3"
+  },
   "dependencies": {
-    "glob": "^8.1.0"
+    "glob": "^9.3.2"
   }
 }
