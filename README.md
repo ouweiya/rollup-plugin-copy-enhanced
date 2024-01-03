@@ -16,12 +16,14 @@ import copy from 'rollup-plugin-copy-enhanced';
 
 export default {
   ...
-  plugins: [copy(['src/assets/**/*', 'src/a.html'], true)],
+  plugins: [copy(['src/assets/**/*', 'src/index.html'], true)],
 };
 ```
 ## Options
 
-`copy(src: string | string[], shouldMinify?: boolean)`
+```js
+copy(src: string | string[], shouldMinify?: boolean)
+```
 
 `src`: Configured using [glob](https://github.com/isaacs/node-glob) pattern
 
