@@ -21,9 +21,7 @@ export default {
 ```
 ## Options
 
-```js
-copy(src: string | string[], shouldMinify?: boolean)
-```
+`copy(src: string | string[], shouldMinify?: boolean)`
 
 `src`: Configured using [glob](https://github.com/isaacs/node-glob) pattern
 
