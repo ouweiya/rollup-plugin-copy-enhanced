@@ -1,51 +1,60 @@
 {
-  "name": "rollup-plugin-json-minify",
-  "version": "1.0.5",
-  "description": "Minify json file rollup plugin",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
+    "name": "rollup-plugin-copy-enhanced",
+    "version": "1.1.0",
+    "description": "Rollup plugin to copy and minify files during build.",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "import": "./dist/index.js",
-    "default": "./dist/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ouweiya/rollup-plugin-json-minify"
-  },
-  "scripts": {
-    "watch": "rimraf dist && tsc --watch",
-    "tsc": "rimraf dist && tsc"
-  },
-  "keywords": [
-    "rollup",
-    "plugin",
-    "json",
-    "minify"
-  ],
-  "files": [
-    "!.github",
-    "!deprecated",
-    "dist",
-    "tsconfig.json",
-    "src"
-  ],
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "@rollup/pluginutils": "^5.0.2",
-    "@tsconfig/node18-strictest-esm": "^1.0.1",
-    "@types/node": "^18.15.11",
-    "rimraf": "^4.4.1",
-    "rollup": "^3.20.2",
-    "tslib": "^2.5.0",
-    "typescript": "^5.0.3"
-  },
-  "dependencies": {
-    "glob": "^9.3.2"
-  }
+    "exports": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ouweiya/rollup-plugin-copy-enhanced"
+    },
+    "scripts": {
+        "watch": "rimraf dist && tsc --watch",
+        "tsc": "rimraf dist && tsc"
+    },
+    "keywords": [
+        "rollup",
+        "plugin",
+        "copy",
+        "minify",
+        "build",
+        "files",
+        "assets",
+        "html",
+        "css",
+        "json",
+        "optimization"
+    ],
+    "files": [
+        "!.github",
+        "!deprecated",
+        "dist",
+        "tsconfig.json",
+        "src"
+    ],
+    "author": "ouweiya",
+    "license": "MIT",
+    "devDependencies": {
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.5",
+        "@rollup/pluginutils": "^5.1.0",
+        "@tsconfig/node18-strictest-esm": "^1.0.1",
+        "@types/node": "^20.10.6",
+        "rimraf": "^5.0.5",
+        "rollup": "^4.9.2",
+        "tslib": "^2.6.2",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@types/html-minifier-terser": "^7.0.2",
+        "glob": "^10.3.10",
+        "html-minifier-terser": "^7.2.0"
+    }
 }

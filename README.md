@@ -1,39 +1,29 @@
+### Rollup plugin to copy and minify files during build.
+
 ## Install
 
 ```console
-npm i rollup-plugin-json-minify -D
+npm i rollup-plugin-copy-enhanced -D
 ```
 
 ## Usage
 
+
 **`rollup.config.js`**
 
 ```js
-import jsonMinify from 'rollup-plugin-json-minify';
+import copy from 'rollup-plugin-copy-enhanced';
 
 export default {
   ...
-  plugins: [jsonMinify({rootDir: 'src', patterns: ['assets/**/*.json', 'a.json'] })],
+  plugins: [copy(['src/assets/**/*', 'src/a.html'], true)],
 };
 ```
+## Options
 
-## Configuration
+`copy(src: string | string[], shouldMinify?: boolean)`
 
-```js
-jsonMinify({
-  rootDir: 'src',
-  patterns: ['assets/**/*.json', 'a.json'],
-});
-```
+`src`: Configured using [glob](https://github.com/isaacs/node-glob) pattern
 
-**`rootDir`**
+`shouldMinify`: Enable minification. Supports HTML, CSS, and JSON.
 
-Type: `string`
-
-default: `Root directory`
-
-**`patterns`**
-
-Type: `string[]`
-
-find files using [glob](https://github.com/isaacs/node-glob)

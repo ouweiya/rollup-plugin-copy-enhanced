@@ -1,7 +1,7 @@
-import type { Plugin } from 'rollup';
-type FileType = {
-    patterns: string[];
-    rootDir: string;
+declare function copyPlugin(src: string | string[], shouldMinify?: boolean): {
+    name: string;
+    buildStart(): void;
+    watchChange(id: string): void;
+    buildEnd(): void;
 };
-declare const jsonMinify: ({ patterns, rootDir }?: FileType) => Plugin;
-export default jsonMinify;
+export default copyPlugin;

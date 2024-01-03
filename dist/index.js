@@ -1,26 +1,58 @@
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
 import { globSync } from 'glob';
-const jsonMinify = ({ patterns, rootDir } = { patterns: [], rootDir: '' }) => {
-    const fileList = globSync(patterns, { cwd: rootDir });
+import { minify } from 'html-minifier-terser';
+function copyPlugin(src, shouldMinify) {
+    const changedFiles = new Set();
+    const watchedFiles = new Set();
+    let isFirstBuild = true;
+    async function emitFileFromPath(filePath, shouldMinify) {
+        const parts = filePath.split(path.sep)[0];
+        const destPath = path.relative(parts, filePath) || path.basename(filePath);
+        const ext = path.extname(filePath).toLowerCase();
+        let source;
+        if (shouldMinify && ['.html', '.css', '.json'].includes(ext)) {
+            source = await minify(fs.readFileSync(filePath, 'utf8'), {
+                collapseWhitespace: true,
+                removeComments: true,
+                minifyCSS: true,
+                minifyJS: true,
+            });
+        }
+        else {
+            source = fs.readFileSync(filePath);
+        }
+        this.emitFile({
+            type: 'asset',
+            fileName: destPath,
+            source,
+        });
+    }
+    const files = globSync(src, { nodir: true });
     return {
-        name: 'rollup-plugin-json-minify',
-        async buildStart() {
-            fileList.forEach(f => {
-                this.addWatchFile(path.resolve(rootDir, f));
+        name: 'copy-plugin',
+        buildStart() {
+            files.forEach(file => {
+                this.addWatchFile(file);
+                watchedFiles.add(file);
+                if (isFirstBuild) {
+                    emitFileFromPath.call(this, file, shouldMinify);
+                }
             });
+            isFirstBuild = false;
         },
-        async generateBundle() {
-            fileList.forEach(f => {
-                const data = readFileSync(path.resolve(rootDir, f), 'utf-8');
-                this.emitFile({
-                    type: 'asset',
-                    fileName: f,
-                    source: JSON.stringify(JSON.parse(data)),
-                });
+        watchChange(id) {
+            if (watchedFiles.has(id)) {
+                changedFiles.add(id);
+            }
+        },
+        buildEnd() {
+            changedFiles.forEach(file => {
+                emitFileFromPath.call(this, file, shouldMinify);
             });
+            changedFiles.clear();
         },
     };
-};
-export default jsonMinify;
+}
+export default copyPlugin;
 //# sourceMappingURL=index.js.map
