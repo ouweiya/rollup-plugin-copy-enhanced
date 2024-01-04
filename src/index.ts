@@ -3,28 +3,47 @@ import path from 'path';
 import { globSync } from 'glob';
 import { PluginContext } from 'rollup';
 import { minify } from 'html-minifier-terser';
+import Handlebars from 'handlebars';
 
-function copyPlugin(src: string | string[], shouldMinify?: boolean) {
+interface Options {
+    minify?: boolean;
+    context?: any;
+}
+
+function copyPlugin(src: string | string[], opts?: Options) {
     const changedFiles: Set<string> = new Set();
     const watchedFiles: Set<string> = new Set();
     let isFirstBuild = true;
 
-    async function emitFileFromPath(this: PluginContext, filePath: string, shouldMinify?: boolean) {
+    const minifyContent = (content: string) => {
+        return minify(content, {
+            collapseWhitespace: true,
+            removeComments: true,
+            minifyCSS: true,
+            minifyJS: true,
+        });
+    };
+
+    async function emitFileFromPath(this: PluginContext, filePath: string, opts?: Options) {
         const parts = filePath.split(path.sep)[0];
         const destPath = path.relative(parts, filePath) || path.basename(filePath);
         const ext = path.extname(filePath).toLowerCase();
         let source: string | Buffer;
 
-        if (shouldMinify && ['.html', '.css', '.json'].includes(ext)) {
-            // console.log('压缩');
-            source = await minify(fs.readFileSync(filePath, 'utf8'), {
-                collapseWhitespace: true,
-                removeComments: true,
-                minifyCSS: true,
-                minifyJS: true,
-            });
+        if (ext === '.html') {
+            const compiledHtml = Handlebars.compile(fs.readFileSync(filePath, 'utf8'))(opts?.context);
+            if (opts?.minify) {
+                source = await minifyContent(compiledHtml);
+            } else {
+                source = compiledHtml;
+            }
+        } else if (['.css', '.json'].includes(ext)) {
+            if (opts?.minify) {
+                source = await minifyContent(fs.readFileSync(filePath, 'utf8'));
+            } else {
+                source = fs.readFileSync(filePath, 'utf8');
+            }
         } else {
-            // console.log('不压缩');
             source = fs.readFileSync(filePath);
         }
 
@@ -43,10 +62,9 @@ function copyPlugin(src: string | string[], shouldMinify?: boolean) {
             files.forEach(file => {
                 this.addWatchFile(file);
                 watchedFiles.add(file);
-                // console.log('监视');
 
                 if (isFirstBuild) {
-                    emitFileFromPath.call(this, file, shouldMinify);
+                    emitFileFromPath.call(this, file, opts);
                 }
             });
 
@@ -60,7 +78,7 @@ function copyPlugin(src: string | string[], shouldMinify?: boolean) {
         buildEnd() {
             // console.log('changedFiles', changedFiles);
             changedFiles.forEach(file => {
-                emitFileFromPath.call(this, file, shouldMinify);
+                emitFileFromPath.call(this, file, opts);
             });
             changedFiles.clear();
         },

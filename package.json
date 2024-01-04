@@ -1,6 +1,6 @@
 {
     "name": "rollup-plugin-copy-enhanced",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Rollup plugin to copy and minify files during build.",
     "type": "module",
     "main": "./dist/index.js",
@@ -55,6 +55,7 @@
     "dependencies": {
         "@types/html-minifier-terser": "^7.0.2",
         "glob": "^10.3.10",
+        "handlebars": "^4.7.8",
         "html-minifier-terser": "^7.2.0"
     }
 }
