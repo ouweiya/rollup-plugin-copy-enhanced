@@ -31,11 +31,19 @@ function copyPlugin(src: string | string[], opts?: Options) {
         let source: string | Buffer;
 
         if (ext === '.html') {
-            const compiledHtml = Handlebars.compile(fs.readFileSync(filePath, 'utf8'))(opts?.context);
-            if (opts?.minify) {
-                source = await minifyContent(compiledHtml);
+            if (opts?.context) {
+                const compiledHtml = Handlebars.compile(fs.readFileSync(filePath, 'utf8'))(opts?.context);
+                if (opts?.minify) {
+                    source = await minifyContent(compiledHtml);
+                } else {
+                    source = compiledHtml;
+                }
             } else {
-                source = compiledHtml;
+                if (opts?.minify) {
+                    source = await minifyContent(fs.readFileSync(filePath, 'utf8'));
+                } else {
+                    source = fs.readFileSync(filePath, 'utf8');
+                }
             }
         } else if (['.css', '.json'].includes(ext)) {
             if (opts?.minify) {

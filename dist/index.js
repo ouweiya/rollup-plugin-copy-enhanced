@@ -21,12 +21,22 @@ function copyPlugin(src, opts) {
         const ext = path.extname(filePath).toLowerCase();
         let source;
         if (ext === '.html') {
-            const compiledHtml = Handlebars.compile(fs.readFileSync(filePath, 'utf8'))(opts?.context);
-            if (opts?.minify) {
-                source = await minifyContent(compiledHtml);
+            if (opts?.context) {
+                const compiledHtml = Handlebars.compile(fs.readFileSync(filePath, 'utf8'))(opts?.context);
+                if (opts?.minify) {
+                    source = await minifyContent(compiledHtml);
+                }
+                else {
+                    source = compiledHtml;
+                }
             }
             else {
-                source = compiledHtml;
+                if (opts?.minify) {
+                    source = await minifyContent(fs.readFileSync(filePath, 'utf8'));
+                }
+                else {
+                    source = fs.readFileSync(filePath, 'utf8');
+                }
             }
         }
         else if (['.css', '.json'].includes(ext)) {
