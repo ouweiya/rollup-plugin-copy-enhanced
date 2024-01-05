@@ -44,15 +44,15 @@ Compile HTML templates using Handlebars.
 </html>
 ```
 
-### Copying and Compiling Handlebars Templates with `copy`
-
-The `copy` function not only copies files from one location to another, but also compiles [Handlebars](https://github.com/handlebars-lang/handlebars.js) templates during the process. This is done by providing a `context` object as part of the options to the `copy` function.
-
 ```js
 copy(['src/index.html'], { context: { jsurl: '/index.js' } });
 ```
 
-### After Compilation
+`{{jsurl}}`: Placeholder
+
+`context`: Context object, where the key values are used to replace placeholders in the HTML.
+
+**Compilation Result**
 
 ```html
 <html lang="en">
