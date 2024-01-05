@@ -31,7 +31,7 @@ export default {
 
 ## Dynamically Generate HTML
 
-Compile HTML templates using Handlebars.
+Compile HTML templates using [Handlebars](https://github.com/handlebars-lang/handlebars.js).
 
 ```html
 <html lang="en">
