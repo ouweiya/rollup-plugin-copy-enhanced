@@ -64,3 +64,33 @@ copy(['src/index.html'], { context: { jsurl: '/index.js' } });
     </body>
 </html>
 ```
+
+## Handlebars Usage Example
+
+```js
+const htmlText = `
+<div>
+    <h1>{{title}}</h1>
+    <p>{{body}}</p>
+</div>
+`;
+
+const template = Handlebars.compile(htmlText);
+
+const html = template({ title: 'New Article', body: 'My first article' });
+
+console.log(html);
+
+<div>
+    <h1>New Article</h1>
+    <p>My first article</p>
+</div>
+```
+
+## More about Handlebars
+
+Handlebars is a popular templating engine that allows you to use templates and input objects to generate HTML or other text formats. Handlebars templates look like regular HTML, with dynamic content surrounded by double braces `{{}}`.
+
+If you want to learn more about Handlebars, you can visit its official documentation:
+
+[Handlebars Official Documentation](https://handlebarsjs.com/)
