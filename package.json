@@ -1,7 +1,7 @@
 {
     "name": "rollup-plugin-copy-enhanced",
-    "version": "1.1.2",
-    "description": "Rollup plugin to copy and minify files during build.",
+    "version": "1.1.3",
+    "description": "Rollup plugin to copy, minify files, and dynamically generate HTML.",
     "type": "module",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
@@ -20,16 +20,14 @@
         "tsc": "rimraf dist && tsc"
     },
     "keywords": [
-        "rollup",
-        "plugin",
+        "rollup-plugin",
         "copy",
         "minify",
-        "build",
-        "files",
+        "minification",
+        "html-generation",
+        "dynamic-html",
+        "handlebars",
         "assets",
-        "html",
-        "css",
-        "json",
         "optimization"
     ],
     "files": [

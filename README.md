@@ -1,4 +1,4 @@
-### Rollup plugin to copy and minify files during build.
+### Rollup plugin to copy, minify files, and dynamically generate HTML.
 
 ## Install
 
@@ -29,7 +29,9 @@ export default {
 -   `minify`: Enable minification. Supports HTML, CSS, and JSON.
 -   `context`: The context to be used when compiling [Handlebars](https://github.com/handlebars-lang/handlebars.js) templates.
 
-## Using Handlebars Templates
+## Dynamically Generate HTML
+
+Compile HTML templates using Handlebars.
 
 ```html
 <html lang="en">
