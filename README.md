@@ -94,3 +94,5 @@ Handlebars is a popular templating engine that allows you to use templates and i
 If you want to learn more about Handlebars, you can visit its official documentation:
 
 [Handlebars Official Documentation](https://handlebarsjs.com/)
+
+.
